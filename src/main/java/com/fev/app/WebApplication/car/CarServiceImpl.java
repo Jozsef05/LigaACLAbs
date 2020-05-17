@@ -7,7 +7,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @Service
-public class CarServiceImpl {
+public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
