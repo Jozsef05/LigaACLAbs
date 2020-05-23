@@ -12,15 +12,35 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * In the CONTROLLER we have all the ENDPOINTS, that
+ * "belongs" to the "User" entity.
+ *
+ * Every method form here is an ENDPOINT and it will call
+ * a method form the SERVICE, which will call a Repository method.
+ *
+ * CONTROLLER -> SERVICE(business logic) -> REPOSITORY(read/write data in DB)
+ *
+ * And also the other way around.
+ */
 @RestController
 public class UserController {
 
+    /**
+     * Because we are using the Spring framework all the
+     * dependencies are solved by the IoC container.
+     */
     @Autowired
     private UserService userService;
 
     @Autowired
     private CarService carService;
 
+    /**
+     * This is an ENDPOINT.
+     *
+     * @return all users from DB.
+     */
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/jpa/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUsers() {
@@ -28,15 +48,15 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/jpa/users/{id}")
-    public User getUser(@PathVariable Integer id) {
-        return userService.findById(id);
+    @GetMapping(path = "/jpa/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@PathVariable Integer id) {
+        return ResponseEntity.ok(userService.findById(id));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/jpa/users/{id}/cars")
-    public List<Car> getAllCarsForUser(@PathVariable Integer id) {
-        return userService.findAllCarsForUser(id);
+    @GetMapping(path = "/jpa/users/{id}/cars", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Car>> getAllCarsForUser(@PathVariable Integer id) {
+        return ResponseEntity.ok(userService.findAllCarsForUser(id));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -52,7 +72,7 @@ public class UserController {
      * @return Status : 201 Created
      */
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/jpa/users")
+    @PostMapping(path = "/jpa/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         URI location = userService.save(user);
 
@@ -70,7 +90,7 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @DeleteMapping("/jpa/users/{id}")
+    @DeleteMapping(path = "/jpa/users/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteById(id);
     }

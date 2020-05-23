@@ -5,6 +5,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * We wanted to have our own method that will select users by name.
+ */
 public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
     @PersistenceContext
