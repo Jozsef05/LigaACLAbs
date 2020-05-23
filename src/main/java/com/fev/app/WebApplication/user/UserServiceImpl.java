@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findById(id);
 
         if (!userOptional.isPresent())
-            throw new UserNotFoundException("No post for this user.");
+            throw new UserNotFoundException("No car for this user.");
 
         if (userOptional.get().getCars().isEmpty())
-            throw new CarNotFoundException("No post for this user.");
+            throw new CarNotFoundException("No car for this user.");
 
         return userOptional.get().getCars();
     }
