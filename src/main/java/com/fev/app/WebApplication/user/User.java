@@ -12,7 +12,12 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * When we want to have in the database an object,
+ * we first declare an @Entity with the same attributes.
+ *
+ * Spring Boot will now this and will take care of things for us.
+ */
 @Entity
 public class User {
 
