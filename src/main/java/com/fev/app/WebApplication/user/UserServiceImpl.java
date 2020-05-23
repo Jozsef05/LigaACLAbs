@@ -45,19 +45,16 @@ public class UserServiceImpl implements UserService {
     }
 
     public String getDetailsForCar(Integer userId, Integer carId) {
-        Optional<User> userOptional = userRepository.findById(userId);
+        /* TODO 5: implement this method as it follows:
+        *   1. get the user you need from DB
+        *   HINT: it can be Optional
+        *   2. get its cars and search for the one you need.
+        *
+        *   Throw exception if the user/car was not found.
+        *
+        *   HINT : check the method "findAllCarsForUser()"*/
 
-        if (!userOptional.isPresent())
-            throw new UserNotFoundException("No car for this user.");
-
-        if (userOptional.get().getCars().isEmpty())
-            throw new CarNotFoundException("No car for this user.");
-
-        for (Car car : userOptional.get().getCars()) {
-            if (car.getId().equals(carId))
-                return car.getContent();
-        }
-        throw new CarNotFoundException("No car with this id");
+        return null;
     }
 
     public URI save(User user) {

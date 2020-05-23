@@ -20,4 +20,6 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
         return query.getResultList();
     }
+
+    // TODO 7: write a function
 }

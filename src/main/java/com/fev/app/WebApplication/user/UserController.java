@@ -50,19 +50,24 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/jpa/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.findById(id));
+        /* TODO 1: user userService to implement this method
+        *   HINT: check <getAllUsers()> */
+        return null;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/jpa/users/{id}/cars", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Car>> getAllCarsForUser(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.findAllCarsForUser(id));
+        /* TODO 2: implement this function*/
+        return null;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "/jpa/users/{userId}/posts/{carId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getDetailsForPost(@PathVariable Integer userId, @PathVariable Integer carId) {
-        return ResponseEntity.ok(userService.getDetailsForCar(userId, carId));
+    @GetMapping(path = "/jpa/users/{userId}/cars/{carId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getDetailsForCar(@PathVariable Integer userId, @PathVariable Integer carId) {
+        /* TODO 3: implement this function using the userService
+        *   TODO 4: the service method is also not implement */
+        return null;
     }
 
     /**
@@ -75,18 +80,17 @@ public class UserController {
     @PostMapping(path = "/jpa/users")
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         URI location = userService.save(user);
-
         return ResponseEntity.created(location).build();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/jpa/users/{id}/posts")
-    public ResponseEntity<Object> createPost(@PathVariable Integer userId, @RequestBody Car car) {
-        User user = userService.findById(userId);
-        car.setUser(user);
-        URI location = carService.save(car);
+    @PostMapping("/jpa/users/{id}/cars")
+    public ResponseEntity<Object> createCar(@PathVariable Integer userId, @RequestBody Car car) {
+        /* TODO 6: save the car that is sent at this ENDPOINT.
+        *   ! you should get the user first.
+        *   NO HINTS */
 
-        return ResponseEntity.created(location).build();
+        return null;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
